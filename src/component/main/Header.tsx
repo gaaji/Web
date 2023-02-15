@@ -4,6 +4,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faAngleDown, faBarcode, faBars, faGear, faMagnifyingGlass, faQrcode} from "@fortawesome/free-solid-svg-icons";
 import {faBell, faCircleUser} from "@fortawesome/free-regular-svg-icons";
 import {useModeSelector} from "../../store/mode";
+import gear from "../../assets/images/gear.svg"
 
 const HeaderBlock = styled.div`
   height: 90px;
@@ -39,6 +40,9 @@ const MarginedIcon = styled(FontAwesomeIcon)`
   :hover {
     cursor: pointer;
   }
+`
+const IconedSvg = styled.img`
+  height: 20px;
 `
 const Top = styled.div`
   position: fixed;
@@ -78,7 +82,7 @@ function Header() {
                     <MarginedIcon icon={faBell}/>
                 </>;
             case "my" :
-                return <><MarginedIcon icon={faGear}/></>
+                return <><IconedSvg src={gear}/></>
             case "townlife":
                 return <>
                     <MarginedIcon icon={faMagnifyingGlass}/>

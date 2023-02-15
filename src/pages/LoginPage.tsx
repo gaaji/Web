@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import gaaji from "../assets/gaaji.png"
+import gaaji from "../assets/images/gaaji.png"
 import theme from "../theme";
 import {useNavigate} from "react-router-dom";
 import {kakaoLogin, naverLogin} from "../util/Api";
