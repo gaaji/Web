@@ -2,9 +2,9 @@ import {faHouse} from "@fortawesome/free-solid-svg-icons";
 import styled from "styled-components";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {IconDefinition} from "@fortawesome/free-brands-svg-icons";
-import {ModeProps} from "../util/Constants";
+import {ModeProps} from "../../util/Constants";
 import {useDispatch} from "react-redux";
-import {SELECT} from "../store/mode";
+import {SELECT} from "../../store/mode";
 
 const NavItemWrapper = styled.div`
         display: flex;

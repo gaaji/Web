@@ -1,16 +1,14 @@
-import Header from "../component/Header";
-import NavBar from "../component/NavBar";
+import Header from "../component/main/Header";
+import NavBar from "../component/main/NavBar";
 import styled from "styled-components";
+import MainContent from "../component/main/MainContent";
 
-const Test = styled.div`
-      height: 2000px;
-    `
 
 function Main(){
 
     return (<>
         <Header/>
-        <Test/>
+        <MainContent/>
         <NavBar/>
     </>)
 
