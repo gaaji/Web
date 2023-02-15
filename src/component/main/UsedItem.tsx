@@ -48,8 +48,11 @@ const UsedItemInterestWrapper = styled.div`
 `
 const UsedItemInterestIcon = styled(FontAwesomeIcon)`
   margin-right: 3px;
-  position: relative;
+  font-size: 15px;
   top: 1px;
+  :hover{
+    cursor: pointer;
+  }
 `
 
 const Divider = styled.hr`
