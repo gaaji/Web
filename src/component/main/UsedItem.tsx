@@ -1,4 +1,4 @@
-import gaaji from "../../assets/gaaji.png";
+import gaaji from "../../assets/images/gaaji.png";
 import {faHeart} from "@fortawesome/free-regular-svg-icons";
 import styled from "styled-components";
 import theme from "../../theme";

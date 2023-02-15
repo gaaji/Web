@@ -14,9 +14,9 @@ const NavItemWrapper = styled.div`
         cursor: pointer;
       }
     `
-const NavItemIcon = styled(FontAwesomeIcon)`
-        font-size: 26px;
+const NavItemIcon = styled.img`
         margin-bottom: 5px;
+        height: 26px;
     `
 const NavItemSpan = styled.span`
       font-size: 14px;
@@ -24,7 +24,7 @@ const NavItemSpan = styled.span`
     `
 
 interface NavItemBlockProps{
-    itemIcon : IconDefinition
+    itemIcon : string
     itemMode : ModeProps;
 
 }
@@ -42,10 +42,9 @@ function NavItemBlock({itemIcon, itemMode}:NavItemBlockProps){
     return (
         <>
             <NavItemWrapper onClick={navItemClicked}>
-                <NavItemIcon icon={itemIcon}/>
+                <NavItemIcon src={itemIcon}/>
                 <NavItemSpan>{itemMode.kor}</NavItemSpan>
             </NavItemWrapper>
-
         </>
     )
 
