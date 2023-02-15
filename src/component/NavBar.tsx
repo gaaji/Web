@@ -6,9 +6,7 @@ import NavItemBlock from "./NavItemBlock";
 import {useDispatch} from "react-redux";
 import {MODE} from "../util/Constants";
 
-function NavBar(){
-
-    const NavBarBlock = styled.div`
+const NavBarBlock = styled.div`
         height: 60px;
         margin : 15px 32px 35px 45px;
         display: flex;
@@ -16,12 +14,16 @@ function NavBar(){
         align-items: center;
     `
 
-    const Bottom = styled.div`
+const Bottom = styled.div`
       position: fixed;
       bottom: 0;
       left: 0;
       right:0;
     `
+
+function NavBar():JSX.Element{
+
+
     return (<>
         <Bottom>
             <hr/>
