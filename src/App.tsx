@@ -1,26 +1,44 @@
-import Header from "./component/Header";
 import {Provider} from "react-redux";
 import {store} from "./store";
-import styled, {ThemeProvider} from "styled-components";
+import {ThemeProvider} from "styled-components";
 import theme from "./theme";
-import NavBar from "./component/NavBar";
+import Main from "./pages/Main";
+import {BrowserRouter, Route, Routes} from "react-router-dom";
+import {main, token} from "./util/Url";
+import {getCookie} from "./util/Cookie";
+import {useEffect, useState} from "react";
+import LoginPage from "./pages/LoginPage";
+import Token from "./pages/Token";
 
 function App() {
 
-    const Test = styled.div`
-      //background-color: black;
-      height: 2000px;
-    `
+    const [login,setLogin] = useState<boolean>(false)
+
+    useEffect(() => {
+        if(getCookie("access_token"))
+            setLogin(true)
+    },[])
+
+
+    const startPage = () : JSX.Element => {
+        if(login)
+            return <Main/>
+        return <LoginPage/>
+    }
+
 
   return (
 
       <Provider store={store}>
         <ThemeProvider theme={theme}>
-            <div>
-              <Header/>
-                <Test/>
-              <NavBar/>
-            </div>
+            <BrowserRouter>
+                <Routes>
+                    <Route path={main} element={startPage()}></Route>
+                    <Route path={token} element={<Token/>}></Route>
+                </Routes>
+            </BrowserRouter>
+
+
         </ThemeProvider>
       </Provider>
 
