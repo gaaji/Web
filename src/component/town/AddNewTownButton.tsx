@@ -3,6 +3,7 @@ import styled from "styled-components";
 import theme from "../../theme";
 import {useNavigate} from "react-router-dom";
 import {ENROLL_TOWN} from "../../util/Url";
+import {ENROLL_TOWN_MODE} from "../../util/Constants";
 
 const NewTownButton = styled.div`
   background-color: ${theme.color.gray};
@@ -21,7 +22,10 @@ export default function AddNewTownButton() {
 
     const addNewTownButtonClicked = () => {
         navigate(ENROLL_TOWN,{
-            replace : true
+            replace : true,
+            state:{
+                mode : ENROLL_TOWN_MODE.ADD,
+            }
         })
     }
 
