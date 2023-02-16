@@ -16,6 +16,7 @@ import chatFill from "../../assets/images/chat-fill.svg"
 import user from "../../assets/images/user.svg"
 import userFill from "../../assets/images/user-fill.svg"
 import {useModeSelector} from "../../store/mode";
+import {FixedDivider} from "../content/Header";
 
 const NavBarBlock = styled.div`
   height: 90px;
@@ -42,7 +43,7 @@ function NavBar(): JSX.Element {
 
     return (<>
         <Bottom>
-            <hr/>
+            <FixedDivider/>
             <NavBarBlock>
                 <NavItemBlock itemIcon={mode === MODE.HOME.eng ? houseFill : house} itemMode={MODE.HOME}/>
                 <NavItemBlock itemIcon={mode === MODE.TOWNLIFE.eng ? mapFill : map} itemMode={MODE.TOWNLIFE}/>

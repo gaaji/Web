@@ -7,7 +7,7 @@ import AddNewTownButton from "./AddNewTownButton";
 import {useState} from "react";
 
 const MyTownSettingWrapper = styled.div`
-  height: 20%;
+
   padding: 20px 20px 0px 20px;
   position: relative;
   top: -10px;

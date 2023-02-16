@@ -56,7 +56,7 @@ const UsedItemInterestIcon = styled(FontAwesomeIcon)`
 `
 
 const Divider = styled.hr`
-  
+  opacity: 1;
   background-color: ${theme.color.gray};
 `
 

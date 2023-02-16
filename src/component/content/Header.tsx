@@ -14,13 +14,13 @@ import AddTownHeader from "../town/AddTownHeader";
 
 const HeaderBlock = styled.div`
   //height: 60px;
-  padding: 25px 20px 25px 25px;
-  display: flex;
+  padding: 25px 20px 25px 25px !important;
+  display: flex !important;;
   justify-content: space-between;
   font-family: ${theme.font.kor};
   align-items: center;
   font-size: 20px;
-  background-color: white;
+
 `
 export const HeaderTitle = styled.span`
   position: relative;
@@ -53,7 +53,10 @@ const Top = styled.div`
   top: 0;
   left: 0;
   right: 0;
-
+  background-color: white;
+`
+export const FixedDivider = styled.hr`
+    margin: 0;
 `
 
 export interface HeaderProps{
@@ -85,7 +88,7 @@ function Header({myTown}:HeaderProps ) {
             <HeaderBlock>
                 {createHeaderBlock()}
             </HeaderBlock>
-            {mode === "my" ? "" : <hr/>}
+            {mode === "my" ? "" : <FixedDivider/>}
         </Top>
 
     </>)
