@@ -4,6 +4,7 @@ import MainContent from "../component/main/MainContent";
 import {townApi} from "../api/townApi";
 import TownEnroll from "../component/town/TownEnroll";
 import {MyTown} from "../model/town";
+import {getCookie, setCookie} from "../util/Cookie";
 
 
 function Main() {
@@ -13,6 +14,9 @@ function Main() {
                 <TownEnroll/>
             </>
         } else {
+
+            if(!getCookie("selected_town"))
+                setCookie("selected_town",data[0].address2)
             return <>
                 <Header myTown={data}/>
                 <MainContent/>

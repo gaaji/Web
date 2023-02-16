@@ -5,8 +5,8 @@ import KakaoMap from "../component/town/KakaoMap";
 import styled from "styled-components";
 import theme from "../theme";
 import TownSettingBlock from "../component/town/TownSettingBlock";
-import {getCookie} from "../util/Cookie";
-import {useState} from "react";
+import {getCookie, setCookie} from "../util/Cookie";
+import {useEffect, useState} from "react";
 
 
 const MyTownBlock = styled(ContentBlock)`
@@ -17,13 +17,19 @@ const MyTownBlock = styled(ContentBlock)`
 export default function MyTown() {
 
     const [town, setTown] = useState<string|undefined>(getCookie("selected_town"));
+    const query = townApi.useGetMyTownQuery();
 
-    const checkTownInfo = () => {
-        const query = townApi.useGetMyTownQuery();
-
+    useEffect(() => {
         if (!town && query.data) {
             setTown(query.data[0].address2);
+            setCookie("selected_town",query.data[0].address2);
         }
+    },[town])
+
+
+    const checkTownInfo = () => {
+
+
 
         if (query.isSuccess) {
             return <>

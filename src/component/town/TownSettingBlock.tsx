@@ -2,9 +2,9 @@ import styled from "styled-components";
 import theme from "../../theme";
 
 import {MyTown} from "../../model/town";
-import SettingButton, {MyTownSettingButtonProps, SettingButtonProps} from "./SettingButton";
+import SettingButton, {MyTownSettingButtonProps} from "./SettingButton";
 import AddNewTownButton from "./AddNewTownButton";
-import {useState} from "react";
+import {SETTING_MODE} from "../../util/Constants";
 
 const MyTownSettingWrapper = styled.div`
 
@@ -48,19 +48,20 @@ export const MyTownSettingButtonDeleteButton = styled.span`
 interface TownSettingBlockProps{
     addresses: MyTown[],
     selectedTown? : string
-    setTown: (town:string) => void
+    setTown: (town?:string) => void
 }
 
 export default function TownSettingBlock({addresses, selectedTown, setTown}:TownSettingBlockProps){
+
 
     const createTownSettingButtons = () => {
 
         if(addresses.length === 1)
             return <>
-                <SettingButton address={addresses[0]} selected={addresses[0].address2 === selectedTown}/>
+                <SettingButton setTown={setTown}  settingMode={SETTING_MODE.MODIFY} address={addresses[0]} selected={addresses[0].address2 === selectedTown}/>
                 <AddNewTownButton/>
             </>
-        return addresses.map(a =>  <SettingButton setTown={setTown} key={a.id}  address={a} selected={a.address2 === selectedTown}/>);
+        return addresses.map(a =>  <SettingButton settingMode={SETTING_MODE.DELETE} setTown={setTown} key={a.id}  address={a} selected={a.address2 === selectedTown}/>);
     }
 
     return (
