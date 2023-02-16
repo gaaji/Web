@@ -20,18 +20,15 @@ export default function MyTown() {
     const query = townApi.useGetMyTownQuery();
 
     useEffect(() => {
-        if (!town && query.data) {
+        if (!town && query.isSuccess) {
             setTown(query.data[0].address2);
             setCookie("selected_town",query.data[0].address2);
         }
-    },[town])
+    },[ query.data])
 
 
     const checkTownInfo = () => {
-
-
-
-        if (query.isSuccess) {
+        if (query.isSuccess && town) {
             return <>
                 <Header myTown={query.data}/>
                 <MyTownBlock>

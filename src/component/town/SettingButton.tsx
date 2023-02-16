@@ -8,16 +8,9 @@ import {Button, Modal} from "react-bootstrap";
 import styled from "styled-components";
 import theme from "../../theme";
 import DeleteModal from "./DeleteModal";
+import ChangeModal from "./ChangeModal";
 
-export interface SettingButtonProps{
-    address : MyTown ,
-    selected : boolean,
-    setTown? : (a ?: string) => void
-    settingMode: string
-}
-export interface MyTownSettingButtonProps{
-    selected : boolean
-}
+
 
 export const StyledModal = styled(Modal)`
   font-family: ${theme.font.kor};
@@ -37,25 +30,26 @@ export const MarginedButton = styled(Button)`
   margin-left: 10px;
 `
 
-
+export interface SettingButtonProps{
+    address : MyTown ,
+    selected : boolean,
+    setTown : (a ?: string) => void
+    settingMode: string
+}
+export interface MyTownSettingButtonProps{
+    selected : boolean
+}
 export default function SettingButton({address, selected, setTown, settingMode}: SettingButtonProps):JSX.Element{
 
     const [show,setShow] = useState<boolean>(false)
 
     const deleteButtonClicked = () => {
-        if (settingMode === SETTING_MODE.DELETE) {
             setShow(true)
-        }
-        else
-            alert(`${address.id} 수정할꺼임~`);
     }
 
     const settingButtonClicked = () => {
-
-        if (setTown) {
             setTown(address.address2);
             setCookie("selected_town", address.address2);
-        }
     }
 
 
@@ -65,8 +59,9 @@ export default function SettingButton({address, selected, setTown, settingMode}:
                 <span onClick={settingButtonClicked}>{address.address2}</span>
                 <MyTownSettingButtonDeleteButton onClick={deleteButtonClicked}>X</MyTownSettingButtonDeleteButton>
             </MyTownSettingButton>
-
-            <DeleteModal setTown={setTown} show={show} setShow={setShow} address={address}/>
+            {settingMode === SETTING_MODE.DELETE ?
+                <DeleteModal setTown={setTown} show={show} setShow={setShow} address={address}/>
+            :<ChangeModal show={show} setShow={setShow} address={address}/>}
         </>
     )
 }

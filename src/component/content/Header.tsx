@@ -74,7 +74,7 @@ function Header({myTown}:HeaderProps ) {
             case MY_TOWN:
                 return <TownHeader/>;
             case ENROLL_TOWN:
-                return <AddTownHeader/>
+                return <AddTownHeader mode={location.state?.mode}/>
         }
 
     }

@@ -9,7 +9,7 @@ interface DeleteModalProps{
     show:boolean,
     setShow:  React.Dispatch<React.SetStateAction<boolean>>,
     address:MyTown,
-    setTown?: (a ?: string) => void
+    setTown: (a ?: string) => void
 }
 
 export default function DeleteModal({show,setShow,address, setTown}:DeleteModalProps):JSX.Element{
@@ -17,10 +17,8 @@ export default function DeleteModal({show,setShow,address, setTown}:DeleteModalP
     const mutation = townApi.useDeleteTownMutation();
     const deleteTown = mutation[0];
     const deleteTownButtonClicked = () => {
-        if(setTown)
-            setTown(undefined)
+        setTown(undefined)
         deleteTown(address.id);
-
     }
 
     const handleClose = () => setShow(false);
@@ -41,6 +39,4 @@ export default function DeleteModal({show,setShow,address, setTown}:DeleteModalP
             </StyledModal>
         </>
         )
-
-
 }

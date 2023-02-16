@@ -37,6 +37,10 @@ export const SETTING_MODE = {
     MODIFY : "MODIFY",
     DELETE : "DELETE",
 }
+export const ENROLL_TOWN_MODE = {
+    MODIFY : "MODIFY",
+    ADD : "ADD"
+}
 
 export {MODE}
 export type { ModeProps }

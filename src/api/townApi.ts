@@ -1,6 +1,6 @@
 import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
-import {BASE_URL, DELETE_TOWN, ENROLL_TOWN, RETRIEVE_MY_TOWN} from "../util/Api";
-import {MyTown, TownAddress} from "../model/town";
+import {BASE_URL, DELETE_TOWN, ENROLL_TOWN, RETRIEVE_MY_TOWN, UPDATE_TOWN} from "../util/Api";
+import {MyTown, TownAddress, UpdateAddress} from "../model/town";
 import {getCookie} from "../util/Cookie";
 
 export const townApi = createApi({
@@ -38,6 +38,21 @@ export const townApi = createApi({
             query: (townId:string) => ({
                 url:DELETE_TOWN(townId),
                 method: 'DELETE',
+                headers : {
+                    AUTHORIZATION: 'Bearer ' + getCookie("access_token")
+                }
+            }),
+            invalidatesTags: () => [{type: "MyTown"}]
+        }),
+        updateTown: builder.mutation<void,UpdateAddress>({
+            query: ({originalTownId, address1, address2}) => ({
+                url:UPDATE_TOWN,
+                method: 'PATCH',
+                body:{
+                    originalTownId,
+                    address1,
+                    address2
+                },
                 headers : {
                     AUTHORIZATION: 'Bearer ' + getCookie("access_token")
                 }
