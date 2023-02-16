@@ -2,16 +2,16 @@ import styled from "styled-components";
 import UsedItemList from "./UsedItemList";
 
 export const ContentBlock = styled.div`
-    padding-top: 60px;
-    height: 100vh;
+  padding-top: 81px;
+  padding-bottom: 80px;
 `
 
-function MainContent(){
+function MainContent() {
 
     return (
         <>
             <ContentBlock>
-             <UsedItemList/>
+                <UsedItemList/>
             </ContentBlock>
         </>
     )

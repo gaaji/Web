@@ -9,7 +9,10 @@ import {getCookie} from "../util/Cookie";
 import {useState} from "react";
 
 
-
+const MyTownBlock = styled(ContentBlock)`
+    padding-bottom: 0px;
+  height: 100vh;
+`
 
 export default function MyTown() {
 
@@ -22,15 +25,13 @@ export default function MyTown() {
             setTown(query.data[0].address2);
         }
 
-
-
         if (query.isSuccess) {
             return <>
                 <Header myTown={query.data}/>
-                <ContentBlock>
+                <MyTownBlock>
                     <KakaoMap town={town}/>
                     <TownSettingBlock addresses={query.data} selectedTown={town} setTown={setTown}/>
-                </ContentBlock>
+                </MyTownBlock>
             </>
         } else {
             return "Now Loading..."

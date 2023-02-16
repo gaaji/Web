@@ -17,7 +17,7 @@ function TownEnroll({nextPage}:TownEnrollProps){
             address1 : `${data.sido} ${data.sigungu}`,
             address2 : `${data.hname !== "" ? data.hname : data.bname}`
         }
-        if(getCookie("selected_town"))
+        if(!getCookie("selected_town"))
             setCookie("selected_town", selectedAddress.address2)
         setAddress(selectedAddress);
 
@@ -26,7 +26,7 @@ function TownEnroll({nextPage}:TownEnrollProps){
 
     }
     const postCodeStyle = {
-        width: '400px',
+        width: '100%',
         height: '100vh',
     };
     return (
@@ -36,7 +36,6 @@ function TownEnroll({nextPage}:TownEnrollProps){
                 style={postCodeStyle}
                 autoClose={true}
                 onComplete={addressClicked}
-                defaultQuery={"남가좌 2동"}
             />
             </div>
         </>

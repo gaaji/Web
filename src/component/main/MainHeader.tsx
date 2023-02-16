@@ -4,25 +4,49 @@ import {faBell, faCircleUser} from "@fortawesome/free-regular-svg-icons";
 import gear from "../../assets/images/gear.svg";
 import {HeaderAngleDown, HeaderProps, HeaderTitle, IconBlock, IconedSvg, MarginedIcon} from "../content/Header";
 import {useNavigate} from "react-router-dom";
+import React, {useEffect, useState} from "react";
+import {getCookie, setCookie} from "../../util/Cookie";
+import styled from "styled-components";
+import {Button, Dropdown, DropdownButton} from "react-bootstrap";
 
 interface MainHeaderProps extends HeaderProps{
     mode : string
 }
 
+
 export default function MainHeader({myTown, mode}:MainHeaderProps){
+    const [town, setTown] = useState<string|undefined>(getCookie("selected_town"));
     const navigate = useNavigate();
+
+    useEffect(() => {
+        if(!town && myTown)
+            setTown(myTown[0].address2)
+
+    },[])
+
+    function moveToMyTownPage() {
+        navigate(MY_TOWN, {
+            replace: true
+        });
+    }
+
     const onTownBtnClicked = () => {
         if(!myTown)
             return;
-
-        if(myTown.length === 1) {
-            navigate(MY_TOWN,{
-                replace : true
-            })
-        }else
-            console.log("hahaha 부럽다")
-
+        if (myTown.length === 1) {
+            moveToMyTownPage();
+        }
     }
+    const townDropdownClicked = (event:React.MouseEvent<HTMLAnchorElement>) => {
+        const target =  event.target as HTMLElement;
+        setTown(target.innerHTML);
+        setCookie("selected_town", target.innerHTML);
+    }
+    const myTownDropdownClicked = () => {
+        moveToMyTownPage();
+    }
+
+
 
     function createTitle() {
         if(!myTown)
@@ -36,10 +60,22 @@ export default function MainHeader({myTown, mode}:MainHeaderProps){
                 return <></>
             default :
                 return <>
-                    <div onClick={onTownBtnClicked}>
-                        <span>{myTown[0].address2}</span>
-                        <HeaderAngleDown icon={faAngleDown}/>
-                    </div>
+                    <Dropdown>
+                        {myTown.length>1 ? <>
+                            <Dropdown.Toggle as={"div"}>
+                                <span>{town}</span>
+                            </Dropdown.Toggle>
+                            <Dropdown.Menu>
+                                {myTown.map(m => <Dropdown.Item key={m.id} onClick={townDropdownClicked}>{m.address2}</Dropdown.Item>)}
+                                <Dropdown.Item onClick={myTownDropdownClicked}>내 동네 설정하기</Dropdown.Item>
+                            </Dropdown.Menu>
+                        </>:   <Dropdown.Toggle as={"div"} onClick={onTownBtnClicked}>
+                            <span>{town}</span>
+                        </Dropdown.Toggle>}
+
+
+
+                    </Dropdown>
                 </>;
         }
     }
