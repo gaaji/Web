@@ -3,24 +3,36 @@ import NavBar from "../component/main/NavBar";
 import styled from "styled-components";
 import MainContent from "../component/main/MainContent";
 import {townApi} from "../api/townApi";
+import TownEnroll from "../component/town/TownEnroll";
+import {MyTown} from "../model/town";
 
 
-function Main(){
+function Main() {
+    function showComponent(data:MyTown[]) {
+        if (typeof data === 'object' && data.length === 0) {
+            return <>
+                <TownEnroll/>
+            </>
+        } else {
+            return <>
+                <Header/>
+                <MainContent/>
+                <NavBar/>
+            </>
+        }
+    }
 
-    // 동네 조회 시도.
-    // 비어있으면 동네 추가 페이지로 이동.
-    const query = townApi.useGetMyTownQuery();
-
-    console.log(query.data)
-    console.log(typeof query.data)
-
-
-
+    const checkTownInfo = () => {
+        const query = townApi.useGetMyTownQuery();
+        if (query.isSuccess) {
+            return showComponent(query.data);
+        } else {
+            return "Now Loading..."
+        }
+    }
 
     return (<>
-        <Header/>
-        <MainContent/>
-        <NavBar/>
+        {checkTownInfo()}
     </>)
 
 }

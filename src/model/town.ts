@@ -1,7 +1,10 @@
-interface MyTown{
-    id : string,
-    address1 : string,
-    address2:string
+interface MyTown extends TownAddress{
+    id : string
 }
 
-export type {MyTown}
+interface TownAddress{
+    address1 : string,
+    address2 : string
+}
+
+export type {MyTown, TownAddress}

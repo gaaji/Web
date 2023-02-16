@@ -1,6 +1,6 @@
 import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
-import {BASE_URL, RETRIEVE_MY_TOWN} from "../util/Api";
-import {MyTown} from "../model/town";
+import {BASE_URL, ENROLL_TOWN, RETRIEVE_MY_TOWN} from "../util/Api";
+import {MyTown, TownAddress} from "../model/town";
 import {getCookie} from "../util/Cookie";
 
 export const townApi = createApi({
@@ -22,6 +22,17 @@ export const townApi = createApi({
             providesTags: () => {
                 return [{type: "MyTown"}]
             }
+        }),
+        enrollTown: builder.mutation<void, TownAddress>({
+            query: ({address1, address2}) => ({
+                url:ENROLL_TOWN,
+                method: 'POST',
+                body: {address1, address2},
+                headers : {
+                    AUTHORIZATION: 'Bearer ' + getCookie("access_token")
+                }
+            }),
+            invalidatesTags: () => [{type: "MyTown"}]
         })
     }),
 })
