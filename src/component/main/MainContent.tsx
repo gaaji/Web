@@ -1,18 +1,18 @@
 import styled from "styled-components";
 import UsedItemList from "./UsedItemList";
 
-const MainBlock = styled.div`
-    padding-top: 100px;
-    height: 2000px;
+export const ContentBlock = styled.div`
+    padding-top: 60px;
+    height: 100vh;
 `
 
 function MainContent(){
 
     return (
         <>
-            <MainBlock>
+            <ContentBlock>
              <UsedItemList/>
-            </MainBlock>
+            </ContentBlock>
         </>
     )
 }

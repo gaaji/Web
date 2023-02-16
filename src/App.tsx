@@ -4,11 +4,14 @@ import {ThemeProvider} from "styled-components";
 import theme from "./theme";
 import Main from "./pages/Main";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
-import {main, token} from "./util/Url";
+import {ENROLL_TOWN, MAIN, MY_TOWN, TOKEN} from "./util/Url";
 import {getCookie} from "./util/Cookie";
 import {useEffect, useState} from "react";
 import LoginPage from "./pages/LoginPage";
 import Token from "./pages/Token";
+import MyTown from "./pages/MyTown";
+import TownEnroll from "./component/town/TownEnroll";
+import TownAddPage from "./pages/TownAddPage";
 
 function App() {
 
@@ -33,8 +36,10 @@ function App() {
         <ThemeProvider theme={theme}>
             <BrowserRouter>
                 <Routes>
-                    <Route path={main} element={startPage()}></Route>
-                    <Route path={token} element={<Token/>}></Route>
+                    <Route path={MAIN} element={startPage()}></Route>
+                    <Route path={TOKEN} element={<Token/>}></Route>
+                    <Route path={MY_TOWN} element={<MyTown/>}></Route>
+                    <Route path={ENROLL_TOWN} element={<TownAddPage/>}></Route>
                 </Routes>
             </BrowserRouter>
 
