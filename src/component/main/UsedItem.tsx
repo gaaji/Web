@@ -71,10 +71,6 @@ interface UsedItemProps {
 }
 
 function UsedItem({postId, imgUrl, title,address, createdAt, price, interestCount}: UsedItemProps) {
-
-    console.log(title.substring(0,24))
-
-
     return (
         <>
             <UsedItemWrapper>

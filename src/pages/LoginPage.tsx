@@ -2,7 +2,7 @@ import styled from "styled-components";
 import gaaji from "../assets/images/gaaji.png"
 import theme from "../theme";
 import {useNavigate} from "react-router-dom";
-import {kakaoLogin, naverLogin} from "../util/Api";
+import {KAKAO_LOGIN, NAVER_LOGIN} from "../util/Api";
 
 const StartPage = styled.div`
       display: flex;
@@ -62,10 +62,10 @@ const NaverButton = styled(SocialLoginButton)`
 
 function LoginPage(): JSX.Element {
     const NaverButtonClicked = () => {
-        window.location.replace(naverLogin) ;
+        window.location.replace(NAVER_LOGIN) ;
     }
     const KakaoButtonClicked = () => {
-        window.location.replace(kakaoLogin) ;
+        window.location.replace(KAKAO_LOGIN) ;
     }
     return (
         <>
