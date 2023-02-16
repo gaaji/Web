@@ -1,6 +1,5 @@
-import Header from "../component/main/Header";
+import Header from "../component/content/Header";
 import NavBar from "../component/main/NavBar";
-import styled from "styled-components";
 import MainContent from "../component/main/MainContent";
 import {townApi} from "../api/townApi";
 import TownEnroll from "../component/town/TownEnroll";
@@ -15,7 +14,7 @@ function Main() {
             </>
         } else {
             return <>
-                <Header/>
+                <Header myTown={data}/>
                 <MainContent/>
                 <NavBar/>
             </>
