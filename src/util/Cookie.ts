@@ -12,4 +12,8 @@ function setCookie(name:string, value:string) {
     document.cookie = updatedCookie; // 새로 갱신
 }
 
-export {getCookie, setCookie}
+function deleteCookie(name:string) {
+    document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+}
+
+export {getCookie, setCookie, deleteCookie}

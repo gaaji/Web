@@ -33,5 +33,10 @@ const MODE:ModeType = {
     }
 }
 
+export const SETTING_MODE = {
+    MODIFY : "MODIFY",
+    DELETE : "DELETE",
+}
+
 export {MODE}
 export type { ModeProps }
