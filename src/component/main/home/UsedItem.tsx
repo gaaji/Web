@@ -1,9 +1,9 @@
-import gaaji from "../../assets/images/gaaji.png";
+import gaaji from "../../../assets/images/gaaji.png";
 import {faHeart} from "@fortawesome/free-regular-svg-icons";
 import styled from "styled-components";
-import theme from "../../theme";
+import theme from "../../../theme";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {compareLocalDateTimeToNow} from "../../util/LocalDateTimeConverter";
+import {compareLocalDateTimeToNow} from "../../../util/LocalDateTimeConverter";
 
 const UsedItemWrapper = styled.div`
   display: flex;

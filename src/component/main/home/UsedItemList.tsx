@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import UsedItem from "./UsedItem";
 import {useState} from "react";
-import {createDummyUsedItemData, UsedItemPostList} from "../../util/Dummy";
+import {createDummyUsedItemData, UsedItemPostList} from "../../../util/Dummy";
 
 const UsedItemListWrapper = styled.div`
   margin: 20px;
