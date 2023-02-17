@@ -21,9 +21,9 @@ function compareLocalDateTimeToNow(localDateTime:string) : string{
     if(gap < 3600 * 24)
         return `${Math.floor(gap/3600)}시간 전`
     if(gap < 3600 * 24 * 30)
-        return `${Math.floor(gap/3600 * 24)}일 전`
+        return `${Math.floor(gap/ (3600 * 24))}일 전`
     if(gap > 3600 * 24 * 30)
-        return `${Math.floor(gap/3600 * 24 * 30)}달 전`
+        return `${Math.floor(gap/ (3600 * 24 * 30))}달 전`
     return "";
 }
 
