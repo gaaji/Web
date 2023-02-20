@@ -9,6 +9,7 @@ import {MAIN} from "../../util/Url";
 import {useEffect, useState} from "react";
 import {setCookie} from "../../util/Cookie";
 import {findSameTown} from "../../pages/TownAuthentication";
+import {CLEAR} from "../../store/towntoken";
 
 
 
@@ -87,6 +88,8 @@ export default function TownAuthBlock({selectedTown,towns, currentTown,setSelect
         if (selectedTown) {
             authenticateTown(selectedTown?.id);
             alert(`${selectedTown?.address2} 인증 성공`)
+            CLEAR();
+            setCookie("X-TOWN-TOKEN","");
             navigate(MAIN, {
                 replace: true
             })
