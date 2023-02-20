@@ -7,10 +7,11 @@ import {useModeSelector} from "../../store/mode";
 import gear from "../../assets/images/gear.svg"
 import {MyTown} from "../../model/town";
 import {useLocation, useNavigate} from "react-router-dom";
-import {ENROLL_TOWN, MAIN, MY_TOWN} from "../../util/Url";
+import {ENROLL_TOWN, MAIN, MY_TOWN, TOWN_AUTH} from "../../util/Url";
 import MainHeader from "../main/MainHeader";
 import TownHeader from "../town/TownHeader";
 import AddTownHeader from "../town/AddTownHeader";
+import TownAuthHeader from "../townauth/TownAuthHeader";
 
 const HeaderBlock = styled.div`
   //height: 60px;
@@ -75,13 +76,11 @@ function Header({myTown}:HeaderProps ) {
                 return <TownHeader/>;
             case ENROLL_TOWN:
                 return <AddTownHeader mode={location.state?.mode}/>
+            case TOWN_AUTH:
+                return <TownAuthHeader/>
         }
 
     }
-
-    createHeaderBlock();
-
-
     return (<>
 
         <Top>
