@@ -18,13 +18,14 @@ interface TownAuthContentProps{
 export default function TownAuthContent({myTown}:TownAuthContentProps){
 
     const [currentTown, setCurrentTown]= useState<TownAddress>();
+    const [flag,setFlag] = useState<boolean>(false);
 
     const town:string|undefined = getCookie("selected_town");
 
     return (
         <>
             <TownAuthWrapper>
-                <KakaoMap town={town} setCurrentTown = {setCurrentTown} mode={KAKAO_MAP_MODE.TOWN_AUTH}/>
+                <KakaoMap town={town} flag={flag} setFlag={setFlag} setCurrentTown = {setCurrentTown} mode={KAKAO_MAP_MODE.TOWN_AUTH}/>
                 <TownAuthBlock town={myTown} currentTown={currentTown}/>
             </TownAuthWrapper>
         </>
