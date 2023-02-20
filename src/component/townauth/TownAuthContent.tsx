@@ -14,7 +14,7 @@ const TownAuthWrapper = styled(ContentBlock)`
 interface TownAuthContentProps{
     selectedTown?:MyTown | null
     towns?:MyTown[],
-    setSelectedTown: (town:MyTown) => void
+    setSelectedTown:  (town:MyTown | undefined | null) => void
 }
 
 export default function TownAuthContent({selectedTown, towns, setSelectedTown}:TownAuthContentProps){

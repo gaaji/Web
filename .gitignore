@@ -27,3 +27,4 @@ dist-ssr
 ### secret
 
 /src/util/Api.ts
+/src/util/Axios.ts
