@@ -41,6 +41,10 @@ export const ENROLL_TOWN_MODE = {
     MODIFY : "MODIFY",
     ADD : "ADD"
 }
+export const KAKAO_MAP_MODE = {
+    MY_TOWN : "MY_TOWN",
+    TOWN_AUTH : "TOWN_AUTH"
+}
 
 export {MODE}
 export type { ModeProps }

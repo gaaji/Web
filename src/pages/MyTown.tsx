@@ -7,11 +7,12 @@ import theme from "../theme";
 import TownSettingBlock from "../component/town/TownSettingBlock";
 import {getCookie, setCookie} from "../util/Cookie";
 import {useEffect, useState} from "react";
+import {KAKAO_MAP_MODE} from "../util/Constants";
 
 
 const MyTownBlock = styled(ContentBlock)`
     padding-bottom: 0px;
-  height: 100vh;
+    height: 100vh;
 `
 
 export default function MyTown() {
@@ -32,7 +33,7 @@ export default function MyTown() {
             return <>
                 <Header myTown={query.data}/>
                 <MyTownBlock>
-                    <KakaoMap town={town}/>
+                    <KakaoMap mode={KAKAO_MAP_MODE.MY_TOWN} town={town}/>
                     <TownSettingBlock addresses={query.data} selectedTown={town} setTown={setTown}/>
                 </MyTownBlock>
             </>

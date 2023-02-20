@@ -1,7 +1,8 @@
 import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
-import {BASE_URL, DELETE_TOWN, ENROLL_TOWN, RETRIEVE_MY_TOWN, UPDATE_TOWN} from "../util/Api";
+import {AUTHENTICATE_TOWN, BASE_URL, DELETE_TOWN, ENROLL_TOWN, RETRIEVE_MY_TOWN, UPDATE_TOWN} from "../util/Api";
 import {MyTown, TownAddress, UpdateAddress} from "../model/town";
 import {getCookie} from "../util/Cookie";
+import {build} from "vite";
 
 export const townApi = createApi({
     reducerPath: 'townApi',
@@ -58,7 +59,18 @@ export const townApi = createApi({
                 }
             }),
             invalidatesTags: () => [{type: "MyTown"}]
+        }),
+        authenticateTown: builder.mutation<void,string>({
+            query: (townId:string) => ({
+                url: AUTHENTICATE_TOWN(townId),
+                method : `PATCH`,
+                headers : {
+                    AUTHORIZATION: 'Bearer ' + getCookie("access_token")
+                }
+            }),
+            invalidatesTags: () => [{type: "MyTown"}]
         })
+
     }),
 })
 
