@@ -6,13 +6,10 @@ import {MyTown, TownAddress} from "../../model/town";
 import {townApi} from "../../api/townApi";
 import {useNavigate} from "react-router-dom";
 import {MAIN} from "../../util/Url";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {setCookie} from "../../util/Cookie";
+import {findSameTown} from "../../pages/TownAuthentication";
 
-interface TownAuthBlockProps {
-    town?: MyTown,
-    currentTown: TownAddress | undefined,
-}
 
 
 const TownAuthBlockContentWrapper = styled.div`
@@ -60,10 +57,17 @@ const ChangeTownButton = styled.div`
   font-weight: bold;
   
 `
+interface TownAuthBlockProps {
+    selectedTown?: MyTown | null,
+    currentTown: TownAddress | undefined,
+    towns?: MyTown[],
+    setCurrentTown: (town: TownAddress) => void;
+    setSelectedTown: (town:MyTown | undefined | null) => void;
+}
 
-export default function TownAuthBlock({town, currentTown}: TownAuthBlockProps) {
+export default function TownAuthBlock({selectedTown,towns, currentTown,setSelectedTown}: TownAuthBlockProps) {
 
-    const [same,setSame] = useState<boolean>(town?.address2 === currentTown?.address2)
+    const [same,setSame] = useState<boolean>(selectedTown?.address2 === currentTown?.address2)
 
     const authTownMutation = townApi.useAuthenticateTownMutation();
     const authenticateTown = authTownMutation[0];
@@ -71,11 +75,18 @@ export default function TownAuthBlock({town, currentTown}: TownAuthBlockProps) {
     const updateTownMutation = townApi.useUpdateTownMutation();
     const updateTown = updateTownMutation[0];
     const navigate = useNavigate();
+
+
+
+    useEffect(() => {
+        setSame(selectedTown?.address2 === currentTown?.address2);
+    },[same, setSelectedTown,currentTown])
+
     const townAuthButtonClicked = () => {
 
-        if (town) {
-            authenticateTown(town?.id);
-            alert(`${town?.address2} 인증 성공`)
+        if (selectedTown) {
+            authenticateTown(selectedTown?.id);
+            alert(`${selectedTown?.address2} 인증 성공`)
             navigate(MAIN, {
                 replace: true
             })
@@ -84,15 +95,23 @@ export default function TownAuthBlock({town, currentTown}: TownAuthBlockProps) {
 
     const townChangeOnCurrentLocation = () => {
 
-        if (town && currentTown) {
+        if (selectedTown && currentTown) {
             setSame(true);
             setCookie("selected_town",currentTown.address2);
-            updateTown({
-                originalTownId: town.id,
-                address1: currentTown.address1,
-                address2 : currentTown.address2
-            })
-
+            if (findSameTown(towns, currentTown.address2) === null) {
+                updateTown({
+                    originalTownId: selectedTown.id,
+                    address1: currentTown.address1,
+                    address2 : currentTown.address2
+                })
+                setSelectedTown({
+                    id : selectedTown.id,
+                    address1: currentTown.address1,
+                    address2 : currentTown.address2
+                })
+                return;
+            }
+                setSelectedTown(findSameTown(towns, currentTown.address2));
         }
     }
 
@@ -100,7 +119,7 @@ export default function TownAuthBlock({town, currentTown}: TownAuthBlockProps) {
     const canAuthTown = () => {
         return <>
             <TownAuthBlockContentWrapper>
-                현재 위치가 내 동네로 설정한 <TownSpan>'{town?.address2}'</TownSpan> 내에 있어요.
+                현재 위치가 내 동네로 설정한 <TownSpan>'{selectedTown?.address2}'</TownSpan> 내에 있어요.
             </TownAuthBlockContentWrapper>
             <Divider/>
             <TownAuthBlockWithArrowWrapper>
@@ -119,7 +138,7 @@ export default function TownAuthBlock({town, currentTown}: TownAuthBlockProps) {
         return <>
         <TownAuthBlockAlertWrapper>
                 <span>
-                    잠깐만요! 현재 위치가  <TownSpan>{town?.address2}</TownSpan>과 달라요!
+                    잠깐만요! 현재 위치가  <TownSpan>{selectedTown?.address2}</TownSpan>과 달라요!
                     </span>
         </TownAuthBlockAlertWrapper>
         <TownAuthBlockContentWrapper>
@@ -137,10 +156,7 @@ export default function TownAuthBlock({town, currentTown}: TownAuthBlockProps) {
 
     return (
         <>
-
             {same ? canAuthTown() : cannotAuthTown()}
-
-
         </>
     )
 }
