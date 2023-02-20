@@ -12,10 +12,12 @@ const TownAuthWrapper = styled(ContentBlock)`
   height: 100vh;
 `
 interface TownAuthContentProps{
-    myTown?:MyTown
+    selectedTown?:MyTown | null
+    towns?:MyTown[],
+    setSelectedTown: (town:MyTown) => void
 }
 
-export default function TownAuthContent({myTown}:TownAuthContentProps){
+export default function TownAuthContent({selectedTown, towns, setSelectedTown}:TownAuthContentProps){
 
     const [currentTown, setCurrentTown]= useState<TownAddress>();
     const [flag,setFlag] = useState<boolean>(false);
@@ -26,7 +28,7 @@ export default function TownAuthContent({myTown}:TownAuthContentProps){
         <>
             <TownAuthWrapper>
                 <KakaoMap town={town} flag={flag} setFlag={setFlag} setCurrentTown = {setCurrentTown} mode={KAKAO_MAP_MODE.TOWN_AUTH}/>
-                <TownAuthBlock town={myTown} currentTown={currentTown}/>
+                <TownAuthBlock setSelectedTown={setSelectedTown} setCurrentTown={setCurrentTown} towns={towns} selectedTown={selectedTown} currentTown={currentTown}/>
             </TownAuthWrapper>
         </>
     )
