@@ -11,8 +11,6 @@ import {setCookie} from "../../util/Cookie";
 import {findSameTown} from "../../pages/TownAuthentication";
 import {CLEAR} from "../../store/towntoken";
 
-
-
 const TownAuthBlockContentWrapper = styled.div`
   padding: 25px 15px 25px 15px;
   font-family: ${theme.font.kor};
@@ -106,7 +104,8 @@ export default function TownAuthBlock({selectedTown,towns, currentTown,setSelect
                     originalTownId: selectedTown.id,
                     address1: currentTown.address1,
                     address2 : currentTown.address2
-                })
+                });
+
                 setSelectedTown({
                     id : selectedTown.id,
                     address1: currentTown.address1,
