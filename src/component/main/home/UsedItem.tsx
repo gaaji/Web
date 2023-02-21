@@ -4,6 +4,7 @@ import styled from "styled-components";
 import theme from "../../../theme";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {compareLocalDateTimeToNow} from "../../../util/LocalDateTimeConverter";
+import {faBox} from "@fortawesome/free-solid-svg-icons";
 
 const UsedItemWrapper = styled.div`
   display: flex;
@@ -17,6 +18,10 @@ const UsedItemImageWrapper = styled.div`
   border-radius: 10px;
   border: 1px solid ${theme.color.gray};
   margin-right: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0,0,0,0.1);
 
 `
 const UsedItemImage = styled.img`
@@ -60,6 +65,11 @@ const Divider = styled.hr`
   background-color: ${theme.color.gray};
 `
 
+const BlankImage = styled(FontAwesomeIcon)`
+  font-size: 40px;
+  color: rgba(0,0,0,0.6);
+`
+
 interface UsedItemProps {
     postId: string;
     imgUrl: string;
@@ -71,11 +81,16 @@ interface UsedItemProps {
 }
 
 function UsedItem({postId, imgUrl, title,address, createdAt, price, interestCount}: UsedItemProps) {
+
     return (
         <>
             <UsedItemWrapper>
                 <UsedItemImageWrapper>
-                    <UsedItemImage src={imgUrl} alt={"haha"}/>
+                    {imgUrl !== null ? <UsedItemImage src={imgUrl} alt={"haha"}/> :
+                        <>
+                        <BlankImage icon={faBox}/>
+                        </>
+                    }
                 </UsedItemImageWrapper>
                 <UsedItemContent>
                     <UsedItemTitle>{title.length > 24 ? `${title.substring(0,24)}...` : title}</UsedItemTitle>

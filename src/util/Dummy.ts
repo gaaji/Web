@@ -1,21 +1,5 @@
+import {UsedItemPostList} from "../model/usedItemPost";
 
-interface UsedItemPost{
-    previewPost : {
-          postId : string;
-          representPictureUrl : string;
-          title : string;
-          address : string;
-          createdAt : string;
-          price : number;
-    }
-    previewPostCount : {
-        interestCount : number;
-        viewCount : number;
-    }
-}
-interface UsedItemPostList{
-    postListRetirveResponse : UsedItemPost
-}
 
 const createDummyUsedItemData = () => {
     const dummy:UsedItemPostList[] = [];
@@ -28,7 +12,9 @@ const createDummyUsedItemData = () => {
                     title : `테스트 ${i+1}`,
                     address : `서초 ${i+1}동`,
                     createdAt : `2023-02-15T22:52:49.954301600`,
-                    price : 30000
+                    price : 30000,
+                    tradeStatus: "예약중",
+                    isHide:false,
                 },
                 previewPostCount : {
                     interestCount : 10,
@@ -42,4 +28,4 @@ const createDummyUsedItemData = () => {
 }
 
 export {createDummyUsedItemData};
-export type { UsedItemPostList };
+

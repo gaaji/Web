@@ -15,7 +15,7 @@ function compareLocalDateTimeToNow(localDateTime:string) : string{
     if(now.getTime() < target.getTime())
         console.error("현재보다 더 이후에 생성된 게시글이 존재할 수 없습니다.")
     if(gap < 60)
-        return `${gap}초 전`
+        return `${Math.floor(gap)}초 전`
     if(gap < 3600)
         return `${Math.floor(gap/60)}분 전`
     if(gap < 3600 * 24)
