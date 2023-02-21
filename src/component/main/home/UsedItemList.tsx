@@ -7,6 +7,7 @@ import {currentTime} from "../../../util/CurrentTime";
 import {useInView} from "react-intersection-observer";
 import {ADD, useUsedItemSelector} from "../../../store/usedItem";
 import {useDispatch} from "react-redux";
+import {PLUS, usePageNumSelector} from "../../../store/pageNum";
 
 const UsedItemListWrapper = styled.div`
   margin: 20px;
@@ -16,9 +17,9 @@ const UsedItemListWrapper = styled.div`
 function UsedItemList() {
 
 
-    const [pageNum ,setPageNum] = useState<number>(0)
     const [ref, inView] = useInView();
     const usedItem = useUsedItemSelector();
+    const pageNum = usePageNumSelector();
     const dispatch = useDispatch();
 
 
@@ -28,8 +29,10 @@ function UsedItemList() {
         requestTime : now
     });
     useEffect(() => {
+
         if (inView && !query.isLoading && query.data !== null) {
-            setPageNum(prev => prev+1);
+            console.log(pageNum)
+            dispatch(PLUS())
         }
     }, [inView])
 

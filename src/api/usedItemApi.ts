@@ -16,6 +16,7 @@ export const usedItemApi = createApi({
             return headers
         }
     }),
+    tagTypes:["list"],
     endpoints: (builder) => ({
         getUsedItem: builder.query<UsedItemPost[],UsedItemPostListArgs>({
             query: (UsedItemPostListArgs) => ({
@@ -23,7 +24,8 @@ export const usedItemApi = createApi({
                 method : `GET`,
                 params: {pageNum : UsedItemPostListArgs.pageNum,
                 requestTime : UsedItemPostListArgs.requestTime}
-            })
+            }),
+            providesTags:[{type:"list"}]
         })
 
         })
