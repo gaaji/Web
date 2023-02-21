@@ -1,5 +1,5 @@
 import {MY_TOWN} from "../../util/Url";
-import {faAngleDown, faBarcode, faBars, faMagnifyingGlass} from "@fortawesome/free-solid-svg-icons";
+import {faAngleDown, faArrowsRotate, faBarcode, faBars, faMagnifyingGlass} from "@fortawesome/free-solid-svg-icons";
 import {faBell, faCircleUser} from "@fortawesome/free-regular-svg-icons";
 import gear from "../../assets/images/gear.svg";
 import {HeaderAngleDown, HeaderProps, HeaderTitle, IconBlock, IconedSvg, MarginedIcon} from "../content/Header";
@@ -8,6 +8,10 @@ import React, {useEffect, useState} from "react";
 import {getCookie, setCookie} from "../../util/Cookie";
 import styled from "styled-components";
 import {Button, Dropdown, DropdownButton} from "react-bootstrap";
+import {useDispatch} from "react-redux";
+import {CLEAR, pageNumSlice} from "../../store/pageNum";
+import {usedItemSlice} from "../../store/usedItem";
+import {REFRESH} from "../../store/now";
 
 interface MainHeaderProps extends HeaderProps{
     mode : string
@@ -17,7 +21,7 @@ interface MainHeaderProps extends HeaderProps{
 export default function MainHeader({myTown, mode}:MainHeaderProps){
     const [town, setTown] = useState<string|undefined>(getCookie("selected_town"));
     const navigate = useNavigate();
-
+    const dispatch = useDispatch();
     useEffect(() => {
         if(!town && myTown)
             setTown(myTown[0].address2)
@@ -44,6 +48,15 @@ export default function MainHeader({myTown, mode}:MainHeaderProps){
     }
     const myTownDropdownClicked = () => {
         moveToMyTownPage();
+    }
+
+
+    const refreshButtonClicked = () => {
+
+        dispatch(pageNumSlice.actions.CLEAR());
+        dispatch(usedItemSlice.actions.CLEAR());
+        dispatch(REFRESH());
+        window.scrollTo({ left: 0, top: 0, behavior: "smooth" });
     }
 
 
@@ -99,6 +112,7 @@ export default function MainHeader({myTown, mode}:MainHeaderProps){
             default :
                 return <>
                     <MarginedIcon icon={faMagnifyingGlass}/>
+                    <MarginedIcon onClick={refreshButtonClicked} icon={faArrowsRotate}/>
                     <MarginedIcon icon={faBars}/>
                     <MarginedIcon icon={faBell}/>
                 </>;
