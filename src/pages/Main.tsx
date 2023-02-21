@@ -11,26 +11,27 @@ import {CREATE_TOWN_TOKEN} from "../util/Api";
 import {SET, useTownTokenSelector} from "../store/towntoken";
 
 
+function getTownToken(townToken: string) {
+    if (townToken !== "")
+        return;
+    if (getCookie("X-TOWN-TOKEN") && getCookie("X-TOWN-TOKEN") !== "") {
+        SET(getCookie("X-TOWN-TOKEN"));
+        return;
+    }
+    tokenAxios.post(CREATE_TOWN_TOKEN)
+        .then(res => {
+            setCookie("X-TOWN-TOKEN", res.headers["x-town-token"])
+            SET(res.headers["x-town-token"]);
+        })
+}
+
 function Main() {
 
 
     const townToken = useTownTokenSelector();
-
+    const query = townApi.useGetMyTownQuery();
     useEffect(() => {
-        console.log("token-useEffect Activated!!!")
-        if(townToken!=="")
-            return;
-        if (getCookie("X-TOWN-TOKEN") && getCookie("X-TOWN-TOKEN") !== "") {
-            console.log("getTownTokenCookie Activated!!!")
-            SET(getCookie("X-TOWN-TOKEN"));
-            return;
-        }
-        tokenAxios.post(CREATE_TOWN_TOKEN)
-            .then(res => {
-                console.log("axios Activated!!!")
-                setCookie("X-TOWN-TOKEN", res.headers["x-town-token"])
-                SET(res.headers["x-town-token"]);
-            })
+        getTownToken(townToken);
     },[townToken])
 
     function showComponent(data:MyTown[]) {
@@ -39,9 +40,9 @@ function Main() {
                 <TownEnroll/>
             </>
         } else {
-
             if(!getCookie("selected_town"))
                 setCookie("selected_town",data[0].address2)
+            getTownToken(townToken);
             return <>
                 <Header myTown={data}/>
                 <MainContent/>
@@ -50,13 +51,8 @@ function Main() {
         }
     }
 
-
-
-
-
-
     const checkTownInfo = () => {
-        const query = townApi.useGetMyTownQuery();
+
         if (query.isSuccess) {
             return showComponent(query.data);
         } else {

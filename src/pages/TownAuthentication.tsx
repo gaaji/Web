@@ -20,16 +20,17 @@ export function findSameTown(datas:MyTown[]|undefined , town:string|undefined){
 export default function TownAuthentication(){
 
     const query = townApi.useGetMyTownQuery();
-    let town:string|undefined = getCookie("selected_town");
+
     const [selectedTown,setSelectedTown]= useState<MyTown|null|undefined>();
     const [towns,setTowns]=useState<MyTown[]>();
-
+    let town:string|undefined = getCookie("selected_town");
     useEffect(() => {
         if (query.isSuccess) {
-            setSelectedTown(findSameTown(query.data, town));
+            const findSameTown1 = findSameTown(query.data, town);
+            setSelectedTown(findSameTown1);
             setTowns(query.data);
         }
-    },[query.isLoading, selectedTown])
+    },[query.isSuccess, selectedTown, town])
 
 
 

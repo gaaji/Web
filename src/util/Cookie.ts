@@ -9,7 +9,7 @@ function getCookie(name:string) {
 
 function setCookie(name:string, value:string) {
     let updatedCookie = encodeURIComponent(name) + "=" + encodeURIComponent(value);
-    document.cookie = updatedCookie; // 새로 갱신
+    document.cookie = updatedCookie + `;path=/`; // 새로 갱신
 }
 
 function deleteCookie(name:string) {
