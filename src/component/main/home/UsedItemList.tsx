@@ -8,30 +8,56 @@ import {useDispatch} from "react-redux";
 import {PLUS, usePageNumSelector} from "../../../store/pageNum";
 import {UsedItemPost} from "../../../model/usedItemPost";
 import {useNowSelector} from "../../../store/now";
+import theme from "../../../theme";
+import {useNavigate} from "react-router-dom";
+import {WRITE_ARTICLES} from "../../../util/Url";
 
 const UsedItemListWrapper = styled.div`
   margin: 20px;
 `
 
+const WriteArticleButton = styled.div`
+    background-color: ${theme.color.gaaji};
+  position: fixed;
+  bottom:120px;
+  width: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 25px;
+  font-family: ${theme.font.kor};
+  font-size: 32px;
+  font-weight: bold;
+  color: white;
+  right:30px;
+  :hover{
+    cursor: pointer;
+  }
+`
 
 function UsedItemList() {
 
-
+    const navigate = useNavigate();
     const [ref, inView] = useInView();
     const usedItem:UsedItemPost[] = useUsedItemSelector();
     const pageNum = usePageNumSelector();
     const dispatch = useDispatch();
-
-
     const now = useNowSelector();
     let query = usedItemApi.useGetUsedItemQuery({
         pageNum,
         requestTime : now
     });
+
+
+    const writeArticleButtonClicked = () => {
+        navigate(WRITE_ARTICLES,{
+            replace:true
+        })
+    }
+
     useEffect(() => {
 
         if (inView && !query.isLoading && query.data !== null && usedItem.length > 0) {
-            console.log(`hooking~~ ${pageNum}`)
             dispatch(PLUS())
         }
     }, [inView])
@@ -68,6 +94,7 @@ function UsedItemList() {
                     })
                 }
                 <p ref={ref}></p>
+                <WriteArticleButton onClick={writeArticleButtonClicked}>+</WriteArticleButton>
             </UsedItemListWrapper>
 
         </>

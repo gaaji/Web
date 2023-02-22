@@ -10,8 +10,8 @@ interface KakaoMapProps {
     town: string | undefined,
     mode: string,
     setCurrentTown?: (currentTown: TownAddress) => void;
-    flag :boolean;
-    setFlag : (flag:boolean) => void;
+    flag? :boolean;
+    setFlag? : (flag:boolean) => void;
 }
 
 interface MapProps {
@@ -92,6 +92,7 @@ export default function KakaoMap({town, mode, flag,setFlag, setCurrentTown}: Kak
                             address1: `${result[i].region_1depth_name} ${result[i].region_2depth_name}`,
                             address2: result[i].region_3depth_name
                         });
+                        if(setFlag)
                         setFlag(true);
                     }
                     break;

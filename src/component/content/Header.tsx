@@ -7,11 +7,12 @@ import {useModeSelector} from "../../store/mode";
 import gear from "../../assets/images/gear.svg"
 import {MyTown} from "../../model/town";
 import {useLocation, useNavigate} from "react-router-dom";
-import {ENROLL_TOWN, MAIN, MY_TOWN, TOWN_AUTH} from "../../util/Url";
+import {ENROLL_TOWN, MAIN, MY_TOWN, TOWN_AUTH, WRITE_ARTICLES} from "../../util/Url";
 import MainHeader from "../main/MainHeader";
 import TownHeader from "../town/TownHeader";
 import AddTownHeader from "../town/AddTownHeader";
 import TownAuthHeader from "../townauth/TownAuthHeader";
+import WriteArticlesHeader from "../article/WriteArticlesHeader";
 
 const HeaderBlock = styled.div`
   //height: 60px;
@@ -61,7 +62,7 @@ export const FixedDivider = styled.hr`
 `
 
 export interface HeaderProps{
-    myTown : MyTown[] | undefined;
+    myTown? : MyTown[] | undefined;
 }
 
 function Header({myTown}:HeaderProps ) {
@@ -78,6 +79,8 @@ function Header({myTown}:HeaderProps ) {
                 return <AddTownHeader mode={location.state?.mode}/>
             case TOWN_AUTH:
                 return <TownAuthHeader/>
+            case WRITE_ARTICLES:
+                return <WriteArticlesHeader/>
         }
 
     }
