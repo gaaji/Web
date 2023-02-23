@@ -10,6 +10,10 @@ import {UPLOAD_USED_ITEM_POST_PICTURE, WRITE_USED_ITEM_POST} from "../../util/Ap
 import {getCookie} from "../../util/Cookie";
 import {useNavigate} from "react-router-dom";
 import {MAIN} from "../../util/Url";
+import {useDispatch} from "react-redux";
+import {CLEAR, usedItemSlice} from "../../store/usedItem";
+import {pageNumSlice} from "../../store/pageNum";
+import {REFRESH} from "../../store/now";
 
 const CompleteButton = styled.span`
   font-weight: bold;
@@ -21,6 +25,17 @@ interface WriteArticlesHeaderProps{
 export default function WriteArticlesHeader({article}:WriteArticlesHeaderProps) {
 
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+
+    function moveNextStep() {
+        dispatch(pageNumSlice.actions.CLEAR());
+        dispatch(usedItemSlice.actions.CLEAR());
+        dispatch(REFRESH());
+        navigate(MAIN, {
+            replace: true
+        })
+    }
+
     const completeButtonClicked = () => {
 
         let errorMessage = `을 입력해주세요`;
@@ -49,6 +64,11 @@ export default function WriteArticlesHeader({article}:WriteArticlesHeaderProps) 
             }
         }).then(res => {
 
+            if (article.imgFile.length === 0) {
+                moveNextStep();
+                return;
+            }
+
             let formData = new FormData();
             for (const file of article.imgFile) {
                 formData.append("file", file);
@@ -61,9 +81,7 @@ export default function WriteArticlesHeader({article}:WriteArticlesHeaderProps) 
                         "X-TOWN-TOKEN": getCookie("X-TOWN-TOKEN")
                     }
                 }).then(() => {
-                navigate(MAIN,{
-                    replace:true
-                })
+                moveNextStep();
             }).catch(err => {
                 alert(err)
             })
