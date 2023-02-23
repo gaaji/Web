@@ -68,10 +68,6 @@ export default function SelectWishPlaceBody({setWishPlace, setMapMode}:SelectWis
 
                 <WishPlaceMap setXY={setWishPlace}/>
 
-                {/*    선택완료 버튼
-
-                TODO 선택 완료 액션 추가 Modal 열어서 text 입력시키기.
-                */}
                 <CompleteSelectButton onClick={completeButtonClicked}>
                     선택 완료
                 </CompleteSelectButton>

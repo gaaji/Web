@@ -64,6 +64,9 @@ export default function WishPlaceMap({setXY}:WishPlaceMapProps){
         marker.setMap(map);
         //@ts-ignore
         markers.push(marker);
+        setXY(prev =>{
+            return {...prev, x : lat+"", y : lng+""}
+        })
     }
 
     useEffect(() => {
@@ -82,15 +85,12 @@ export default function WishPlaceMap({setXY}:WishPlaceMapProps){
 
             //@ts-ignore
             window.kakao.maps.event.addListener(map, 'center_changed', function() {
-                //@ts-ignore
-                let latlng = map.getCenter();
+
                 //@ts-ignore
                 setMarker(latlng.getLat(), latlng.getLng() );
                 //@ts-ignore
 
-                setXY(prev =>{
-                    return {...prev, x : latlng.getLat()+"", y : latlng.getLng()+""}
-                })
+
 
             });
         })

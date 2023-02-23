@@ -40,9 +40,9 @@ export default function WriteArticlesHeader({article}:WriteArticlesHeaderProps) 
             category:article.category,
             price: article.share ? 0 : article.price,
             canSuggest: article.suggest,
-            placeX : "",
-            placeY : "",
-            placeText:""
+            placeX : article.wishPlace?.x,
+            placeY : article.wishPlace?.y,
+            placeText:article.wishPlace?.text
         },{
             headers:{
                 "X-TOWN-TOKEN": getCookie("X-TOWN-TOKEN")
@@ -61,9 +61,9 @@ export default function WriteArticlesHeader({article}:WriteArticlesHeaderProps) 
                         "X-TOWN-TOKEN": getCookie("X-TOWN-TOKEN")
                     }
                 }).then(() => {
-                navigate(MAIN,{
-                    replace:true
-                })
+                // navigate(MAIN,{
+                //     replace:true
+                // })
             }).catch(err => {
                 alert(err)
             })

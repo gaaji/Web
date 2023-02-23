@@ -26,7 +26,10 @@ export interface MakeArticle{
     category:string,
     setCategory:React.Dispatch<React.SetStateAction<string>>,
     content:string,
-    setContent:React.Dispatch<React.SetStateAction<string>>
+    setContent:React.Dispatch<React.SetStateAction<string>>,
+    wishPlace:WishPlace|undefined,
+    setWishPlace:React.Dispatch<React.SetStateAction<WishPlace|undefined>>
+
 }
 export default function WriteArticle() {
     const [mapMode, setMapMode] = useState<boolean>(false)
@@ -60,7 +63,8 @@ export default function WriteArticle() {
         setCategory,
         content,setContent,
         suggest,
-        setSuggest
+        setSuggest,
+        wishPlace,setWishPlace
     }
 
 
@@ -74,7 +78,7 @@ export default function WriteArticle() {
                         <WriteArticlesHeader article={article}/>
                     </HeaderBlock>
                 </Top>
-                <WriteArticlesBody wishPlace={wishPlace} setMapMode={setMapMode} article={article}/></>
+                <WriteArticlesBody setMapMode={setMapMode} article={article}/></>
             :<>
                     <Top>
                         <HeaderBlock>

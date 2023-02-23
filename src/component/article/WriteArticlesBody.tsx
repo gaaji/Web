@@ -120,9 +120,9 @@ const WishPlaceSpan = styled(FontedSpan)`
 interface WriteArticlesBodyProps{
     article:MakeArticle,
     setMapMode: React.Dispatch<React.SetStateAction<boolean>>,
-    wishPlace:WishPlace | undefined
+
 }
-export default function WriteArticlesBody({article,setMapMode,wishPlace}:WriteArticlesBodyProps) {
+export default function WriteArticlesBody({article,setMapMode}:WriteArticlesBodyProps) {
 
     const LIMIT = 10;
 
@@ -226,9 +226,9 @@ export default function WriteArticlesBody({article,setMapMode,wishPlace}:WriteAr
 
                         <WishPlaceSpan onClick={() => setMapMode(true)}>
                             {
-                                wishPlace?.text ?
+                                article.wishPlace?.text ?
                                     <>
-                                        <WishPlaceSelectText>{ wishPlace?.text}</WishPlaceSelectText>
+                                        <WishPlaceSelectText>{ article.wishPlace?.text}</WishPlaceSelectText>
                                         <WishPlaceSelectText><FontAwesomeIcon icon={faCircleXmark}/></WishPlaceSelectText>
                                     </>
                                     :
