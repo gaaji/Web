@@ -56,7 +56,6 @@ function UsedItemList() {
     }
 
     useEffect(() => {
-
         if (inView && !query.isLoading && query.data !== null && usedItem.length > 0) {
             dispatch(PLUS())
         }

@@ -7,7 +7,7 @@ import marker2 from "../../assets/images/gaaji-nav2.png"
 import {TownAddress} from "../../model/town";
 
 interface KakaoMapProps {
-    town: string | undefined,
+    town?: string
     mode: string,
     setCurrentTown?: (currentTown: TownAddress) => void;
     flag? :boolean;
@@ -126,7 +126,6 @@ export default function KakaoMap({town, mode, flag,setFlag, setCurrentTown}: Kak
         })
 
         onLoadKakaoMap();
-        console.log(town)
     }, [town,flag])
 
 

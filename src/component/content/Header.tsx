@@ -14,7 +14,7 @@ import AddTownHeader from "../town/AddTownHeader";
 import TownAuthHeader from "../townauth/TownAuthHeader";
 import WriteArticlesHeader from "../article/WriteArticlesHeader";
 
-const HeaderBlock = styled.div`
+export const HeaderBlock = styled.div`
   //height: 60px;
   padding: 25px 20px 25px 25px !important;
   display: flex !important;;
@@ -50,7 +50,7 @@ export const MarginedIcon = styled(FontAwesomeIcon)`
 export const IconedSvg = styled.img`
   height: 20px;
 `
-const Top = styled.div`
+export const Top = styled.div`
   position: fixed;
   top: 0;
   left: 0;
@@ -79,8 +79,6 @@ function Header({myTown}:HeaderProps ) {
                 return <AddTownHeader mode={location.state?.mode}/>
             case TOWN_AUTH:
                 return <TownAuthHeader/>
-            case WRITE_ARTICLES:
-                return <WriteArticlesHeader/>
         }
 
     }
