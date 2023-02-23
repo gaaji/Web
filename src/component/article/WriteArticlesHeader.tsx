@@ -61,9 +61,9 @@ export default function WriteArticlesHeader({article}:WriteArticlesHeaderProps) 
                         "X-TOWN-TOKEN": getCookie("X-TOWN-TOKEN")
                     }
                 }).then(() => {
-                // navigate(MAIN,{
-                //     replace:true
-                // })
+                navigate(MAIN,{
+                    replace:true
+                })
             }).catch(err => {
                 alert(err)
             })
