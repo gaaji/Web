@@ -7,13 +7,14 @@ import {useModeSelector} from "../../store/mode";
 import gear from "../../assets/images/gear.svg"
 import {MyTown} from "../../model/town";
 import {useLocation, useNavigate} from "react-router-dom";
-import {ENROLL_TOWN, MAIN, MY_TOWN, TOWN_AUTH} from "../../util/Url";
+import {ENROLL_TOWN, MAIN, MY_TOWN, TOWN_AUTH, WRITE_ARTICLES} from "../../util/Url";
 import MainHeader from "../main/MainHeader";
 import TownHeader from "../town/TownHeader";
 import AddTownHeader from "../town/AddTownHeader";
 import TownAuthHeader from "../townauth/TownAuthHeader";
+import WriteArticlesHeader from "../article/WriteArticlesHeader";
 
-const HeaderBlock = styled.div`
+export const HeaderBlock = styled.div`
   //height: 60px;
   padding: 25px 20px 25px 25px !important;
   display: flex !important;;
@@ -49,7 +50,7 @@ export const MarginedIcon = styled(FontAwesomeIcon)`
 export const IconedSvg = styled.img`
   height: 20px;
 `
-const Top = styled.div`
+export const Top = styled.div`
   position: fixed;
   top: 0;
   left: 0;
@@ -61,7 +62,7 @@ export const FixedDivider = styled.hr`
 `
 
 export interface HeaderProps{
-    myTown : MyTown[] | undefined;
+    myTown? : MyTown[] | undefined;
 }
 
 function Header({myTown}:HeaderProps ) {

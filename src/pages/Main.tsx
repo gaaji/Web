@@ -6,7 +6,7 @@ import TownEnroll from "../component/town/TownEnroll";
 import {MyTown} from "../model/town";
 import {getCookie, setCookie} from "../util/Cookie";
 import {useEffect} from "react";
-import {tokenAxios} from "../util/Axios";
+import {accessTokenAxios} from "../util/Axios";
 import {CREATE_TOWN_TOKEN} from "../util/Api";
 import {SET, useTownTokenSelector} from "../store/towntoken";
 
@@ -18,7 +18,7 @@ function getTownToken(townToken: string) {
         SET(getCookie("X-TOWN-TOKEN"));
         return;
     }
-    tokenAxios.post(CREATE_TOWN_TOKEN)
+    accessTokenAxios.post(CREATE_TOWN_TOKEN)
         .then(res => {
             setCookie("X-TOWN-TOKEN", res.headers["x-town-token"])
             SET(res.headers["x-town-token"]);
