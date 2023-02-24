@@ -1,12 +1,12 @@
 import styled from "styled-components";
-import {ContentBlock} from "../main/MainContent";
-import theme from "../../theme";
-import {CenterBox} from "../../util/StyledBox";
-import KakaoMap from "../town/KakaoMap";
-import {KAKAO_MAP_MODE} from "../../util/Constants";
+import {ContentBlock} from "../../main/MainContent";
+import theme from "../../../theme";
+import {CenterBox} from "../../../util/StyledBox";
+import KakaoMap from "../../town/KakaoMap";
+import {KAKAO_MAP_MODE} from "../../../util/Constants";
 import WishPlaceMap from "./WishPlaceMap";
 import React, {useState} from "react";
-import {WishPlace} from "../../model/usedItemPost";
+import {WishPlace} from "../../../model/usedItemPost";
 import WishPlaceTextModal from "./WishPlaceTextModal";
 
 const WishPlaceBodyWrapper = styled(ContentBlock)`

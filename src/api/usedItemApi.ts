@@ -1,7 +1,7 @@
 import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
-import {BASE_URL, USED_ITEM_POST_LIST} from "../util/Api";
+import {BASE_URL, READ_ARTICLE, USED_ITEM_POST_LIST} from "../util/Api";
 import {getCookie} from "../util/Cookie";
-import {UsedItemPost, UsedItemPostListArgs} from "../model/usedItemPost";
+import {Article, UsedItemPost, UsedItemPostListArgs} from "../model/usedItemPost";
 
 export const usedItemApi = createApi({
     reducerPath: 'usedItemApi',
@@ -16,7 +16,7 @@ export const usedItemApi = createApi({
             return headers
         }
     }),
-    tagTypes:["list"],
+    tagTypes:["list","article"],
     endpoints: (builder) => ({
         getUsedItem: builder.query<UsedItemPost[],UsedItemPostListArgs>({
             query: (UsedItemPostListArgs) => ({
@@ -26,8 +26,16 @@ export const usedItemApi = createApi({
                 requestTime : UsedItemPostListArgs.requestTime}
             }),
             providesTags:[{type:"list"}]
+        }),
+        getUsedItemArticle: builder.query<Article,{id:string}>({
+            query : ({id}) => ({
+                url: READ_ARTICLE(id),
+                method : `GET`
+            }),
+            providesTags: (result,error,arg) =>{
+                return [{type:"article", id:arg.id }]
+            }
         })
-
         })
     })
 

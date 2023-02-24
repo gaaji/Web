@@ -81,6 +81,7 @@ function UsedItemList() {
 
                         usedItem.map(d => {
                         return <UsedItem
+
                             key={d.previewPost.postId}
                             imgUrl={d.previewPost.representPictureUrl}
                             postId={d.previewPost.postId}

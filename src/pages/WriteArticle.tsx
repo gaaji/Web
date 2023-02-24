@@ -1,10 +1,10 @@
 import {HeaderBlock, Top} from "../component/content/Header";
-import WriteArticlesBody from "../component/article/WriteArticlesBody";
-import WriteArticlesHeader from "../component/article/WriteArticlesHeader";
+import WriteArticlesBody from "../component/article/write/WriteArticlesBody";
+import WriteArticlesHeader from "../component/article/write/WriteArticlesHeader";
 import React, {createContext, useEffect, useState} from "react";
 import {Article, WishPlace} from "../model/usedItemPost";
-import SelectWishPlaceHeader from "../component/article/SelectWishPlaceHeader";
-import SelectWishPlaceBody from "../component/article/SelectWishPlaceBody";
+import SelectWishPlaceHeader from "../component/article/write/SelectWishPlaceHeader";
+import SelectWishPlaceBody from "../component/article/write/SelectWishPlaceBody";
 
 interface ImageBase{
     src: string;

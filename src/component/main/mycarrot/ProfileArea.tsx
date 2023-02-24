@@ -17,10 +17,9 @@ const ProfileWrapper = styled.div`
 const ProfileNickname = styled.span`
     font-size: 20px;
 `
-const ProfileImg = styled.img`
+export const ProfileImg = styled.img`
   width: 40px;
   border-radius: 50%;
-  //background-color: black;
   margin-right: 10px;
 `
 const ProfileViewButton = styled.div`

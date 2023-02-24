@@ -1,11 +1,11 @@
-import {townApi} from "../../api/townApi";
-import {CenteredDiv, EndedDiv, MarginedButton, StyledModal} from "../town/SettingButton";
+import {townApi} from "../../../api/townApi";
+import {CenteredDiv, EndedDiv, MarginedButton, StyledModal} from "../../town/SettingButton";
 import {Button, Form, Modal} from "react-bootstrap";
 import React, {ChangeEventHandler} from "react";
-import {WishPlace} from "../../model/usedItemPost";
+import {WishPlace} from "../../../model/usedItemPost";
 import styled from "styled-components";
-import {FlexBox} from "../../util/StyledBox";
-import theme from "../../theme";
+import {FlexBox} from "../../../util/StyledBox";
+import theme from "../../../theme";
 
 interface WishPlaceTextModalProps{
     show : boolean;
