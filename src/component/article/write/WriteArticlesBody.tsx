@@ -1,16 +1,16 @@
-import {ContentBlock} from "../main/MainContent";
+import {ContentBlock} from "../../main/MainContent";
 import styled from "styled-components";
-import theme from "../../theme";
+import theme from "../../../theme";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCamera, faChevronRight} from "@fortawesome/free-solid-svg-icons";
 import Slider from "react-slick";
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import {BetweenBox, CenterBox, FlexBox, FontedSpan} from "../../util/StyledBox";
+import {BetweenBox, CenterBox, FlexBox, FontedSpan} from "../../../util/StyledBox";
 import {FormControl} from "react-bootstrap";
 import React, {useState} from "react";
-import {Article, WishPlace} from "../../model/usedItemPost";
-import {MakeArticle} from "../../pages/WriteArticle";
+import {Article, WishPlace} from "../../../model/usedItemPost";
+import {MakeArticle} from "../../../pages/WriteArticle";
 import {faCircleXmark} from "@fortawesome/free-regular-svg-icons";
 
 

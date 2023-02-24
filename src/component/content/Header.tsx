@@ -12,7 +12,7 @@ import MainHeader from "../main/MainHeader";
 import TownHeader from "../town/TownHeader";
 import AddTownHeader from "../town/AddTownHeader";
 import TownAuthHeader from "../townauth/TownAuthHeader";
-import WriteArticlesHeader from "../article/WriteArticlesHeader";
+import WriteArticlesHeader from "../article/write/WriteArticlesHeader";
 
 export const HeaderBlock = styled.div`
   //height: 60px;

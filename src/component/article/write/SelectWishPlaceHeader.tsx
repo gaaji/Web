@@ -1,10 +1,10 @@
-import {HeaderTitle} from "../content/Header";
-import {MarginRightIcon} from "../town/TownHeader";
+import {HeaderTitle} from "../../content/Header";
+import {MarginRightIcon} from "../../town/TownHeader";
 import {faAngleLeft} from "@fortawesome/free-solid-svg-icons";
 import React from "react";
 import styled from "styled-components";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {WishPlace} from "../../model/usedItemPost";
+import {WishPlace} from "../../../model/usedItemPost";
 
 interface SelectWishPlaceHeaderProps{
     action  :React.Dispatch<React.SetStateAction<boolean>>,

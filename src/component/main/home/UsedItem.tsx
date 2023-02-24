@@ -1,10 +1,11 @@
-import gaaji from "../../../assets/images/gaaji.png";
 import {faHeart} from "@fortawesome/free-regular-svg-icons";
 import styled from "styled-components";
 import theme from "../../../theme";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {compareLocalDateTimeToNow} from "../../../util/LocalDateTimeConverter";
 import {faBox} from "@fortawesome/free-solid-svg-icons";
+import {useNavigate} from "react-router-dom";
+import {READ_ARTICLE} from "../../../util/Url";
 
 const UsedItemWrapper = styled.div`
   display: flex;
@@ -82,9 +83,19 @@ interface UsedItemProps {
 
 function UsedItem({postId, imgUrl, title,address, createdAt, price, interestCount}: UsedItemProps) {
 
+    const navigate = useNavigate();
+
+    const usedItemMove = () => {
+        navigate(READ_ARTICLE,
+            {replace:true,
+            state : {
+                id : postId
+            }})
+    }
+
     return (
         <>
-            <UsedItemWrapper>
+            <UsedItemWrapper onClick={usedItemMove}>
                 <UsedItemImageWrapper>
                     {imgUrl !== null ? <UsedItemImage src={imgUrl} alt={"haha"}/> :
                         <>
@@ -97,6 +108,7 @@ function UsedItem({postId, imgUrl, title,address, createdAt, price, interestCoun
                     <UsedItemSub>{address} · {compareLocalDateTimeToNow(createdAt)}</UsedItemSub>
                     <UsedItemPrice>{price.toLocaleString()}원</UsedItemPrice>
                     <UsedItemInterestWrapper>
+                        {/*TODO 관심 등록 기능 추가*/}
                         <UsedItemInterestIcon icon={faHeart}/>
                         <span>{interestCount}</span>
                     </UsedItemInterestWrapper>

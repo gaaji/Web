@@ -1,19 +1,19 @@
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faAngleLeft, faArrowLeft} from "@fortawesome/free-solid-svg-icons";
-import {MarginRightIcon} from "../town/TownHeader";
-import {HeaderTitle} from "../content/Header";
+import {MarginRightIcon} from "../../town/TownHeader";
+import {HeaderTitle} from "../../content/Header";
 import styled from "styled-components";
-import theme from "../../theme";
-import {MakeArticle} from "../../pages/WriteArticle";
-import {accessTokenAxios, townTokenAxios} from "../../util/Axios";
-import {UPLOAD_USED_ITEM_POST_PICTURE, WRITE_USED_ITEM_POST} from "../../util/Api";
-import {getCookie} from "../../util/Cookie";
+import theme from "../../../theme";
+import {MakeArticle} from "../../../pages/WriteArticle";
+import {accessTokenAxios, townTokenAxios} from "../../../util/Axios";
+import {UPLOAD_USED_ITEM_POST_PICTURE, WRITE_USED_ITEM_POST} from "../../../util/Api";
+import {getCookie} from "../../../util/Cookie";
 import {useNavigate} from "react-router-dom";
-import {MAIN} from "../../util/Url";
+import {MAIN} from "../../../util/Url";
 import {useDispatch} from "react-redux";
-import {CLEAR, usedItemSlice} from "../../store/usedItem";
-import {pageNumSlice} from "../../store/pageNum";
-import {REFRESH} from "../../store/now";
+import {CLEAR, usedItemSlice} from "../../../store/usedItem";
+import {pageNumSlice} from "../../../store/pageNum";
+import {REFRESH} from "../../../store/now";
 
 const CompleteButton = styled.span`
   font-weight: bold;

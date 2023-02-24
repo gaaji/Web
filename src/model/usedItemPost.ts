@@ -41,3 +41,31 @@ export interface WishPlace{
     x ?:string,
     y?:string;
 }
+
+export interface Article{
+      postId:string
+      suggestCount:number
+      interestCount:number
+      viewCount:number
+      chatCount:number
+      title:string
+      contents:string
+      category:string
+      createdAt:string
+      isHide:boolean
+      price:number
+      canSuggest:boolean
+      wishX:string
+      wishY:string
+      wishText:string
+      townId:string
+      townAddress:string
+      sellerId:string
+      sellerNickname:string
+      sellerProfilePictureUrl:string
+      sellerMannerTemperature:number
+      isMine:boolean
+      tradeStatus:string
+      isInterested:boolean
+     picturesUrl:string[]
+}

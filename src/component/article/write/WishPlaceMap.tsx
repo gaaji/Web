@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from "react";
-import {TownAddress} from "../../model/town";
-import marker2 from "../../assets/images/gaaji-nav2.png";
-import {KAKAO_MAP_MODE} from "../../util/Constants";
+import {TownAddress} from "../../../model/town";
+import marker2 from "../../../assets/images/gaaji-nav2.png";
+import {KAKAO_MAP_MODE} from "../../../util/Constants";
 import styled from "styled-components";
-import {WishPlace} from "../../model/usedItemPost";
+import {WishPlace} from "../../../model/usedItemPost";
 
 const Map = styled.div`
   width: 100%;
@@ -85,7 +85,8 @@ export default function WishPlaceMap({setXY}:WishPlaceMapProps){
 
             //@ts-ignore
             window.kakao.maps.event.addListener(map, 'center_changed', function() {
-
+                //@ts-ignore
+                let latlng = map.getCenter();
                 //@ts-ignore
                 setMarker(latlng.getLat(), latlng.getLng() );
                 //@ts-ignore
